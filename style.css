@@ -29,7 +29,7 @@ body {
 
 .title,
 .date,
-.genre {
+.genre, .cat {
     position: absolute;
     margin: 0 0;
     padding: 0;
@@ -48,12 +48,16 @@ body {
     top: 0;
     width: auto;
 }
-
+.cat{
+    width: auto;
+    text-transform: capitalize;
+    margin-left: 70px;
+}
 .pagePlus {
     background-color: aqua;
     width: 50px;
     height: 50px;
-    margin: 50px 50% 0 50%;
+    margin: 5px 0% 0 50%;
     border-radius: 50%;
 }
 
@@ -61,23 +65,35 @@ body {
 
 #bar1,
 #bar2,
-#bar3 {
+#bar3, #bar4, #bar5 {
     width: 32px;
-    height: 5px;
+    height: 4px;
     background-color: #333;
     margin: 5px 0;
 }
+#bar2{
+    width: 45px;
+}
+#bar4, #bar5{
+    width: 13px;
+    position: absolute;
+    transform: rotate(45deg);
+    right: -2px;
+    top: 5px;
+}
+#bar5{
+    transform: rotate(-45deg);
+    top: 12.5px
+}
 .slideMenu{
-    width: 0;
+    width: 50vw;
     height: 100vh;
     position: absolute;
     z-index: 10;
     background-color: azure;
-    transition: all 0.5s;
+    transition: width 0.5s;
 }
-.slideMenu:{
-    width:
-}
+
 .burgerMenu {
     cursor: pointer;
     top: 8px;
