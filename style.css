@@ -1,33 +1,94 @@
-body{
+body {
     margin: auto;
 }
-#events{
+
+#events {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, auto))
+    grid-template-columns: repeat(auto-fill, minmax(270px, auto));
 }
 
-.imgPlace{
+.singleEvent {
+    margin: 0px 0px 0px auto;
+    display: grid;
+    grid-template-rows: auto 70px;
+}
+
+.imgPlace {
     border: black solid 1pt;
     height: 155px;
-    width: 250px;
+    width: 220px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-.title, .date, .genre{
-    top: 156px;
-    margin: 0;
-    left: 22vw;
-    width: 50%;
+
+.textInfo {
+    display: inline;
+    position: relative;
+}
+
+.title,
+.date,
+.genre {
+    position: absolute;
+    margin: 0 0;
+    padding: 0;
+    width: 80%;
     font-size: 10pt;
     text-transform: capitalize;
 }
-#pagePlus{
-    background-color: aqua;
-    position: absolute;
 
+.title {
+    top: 15px;
+    width: auto;
+}
+
+.date {
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+.pagePlus {
+    background-color: aqua;
     width: 50px;
     height: 50px;
-    margin: 0 0 0 40%;
+    margin: 50px 50% 0 50%;
     border-radius: 50%;
 }
+
+/*BURGER*/
+
+#bar1,
+#bar2,
+#bar3 {
+    width: 32px;
+    height: 5px;
+    background-color: #333;
+    margin: 5px 0;
+}
+.slideMenu{
+    width: 0;
+    height: 100vh;
+    position: absolute;
+    z-index: 10;
+    background-color: azure;
+    transition: all 0.5s;
+}
+.slideMenu:{
+    width:
+}
+.burgerMenu {
+    cursor: pointer;
+    top: 8px;
+    left: 10px;
+    position: absolute;
+}
+.dontDisplay{
+    display: none;
+}
+/*.slideAnimation{
+    animation: slide 0.3s forwards;
+}
+@keyframes slide{
+}*/
