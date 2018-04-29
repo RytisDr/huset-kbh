@@ -87,22 +87,22 @@ body {
 }
 .slideMenu{
     width: 50vw;
-    height: 100vh;
+    height: 400px;
     position: absolute;
     z-index: 10;
     background-color: azure;
-    transition: width 0.5s;
+    transition: all 0.5s;
 }
-
+.slideMenu.hidden{
+    transform: translateX(-50vw);
+}
 .burgerMenu {
     cursor: pointer;
     top: 8px;
     left: 10px;
     position: absolute;
 }
-.dontDisplay{
-    display: none;
-}
+
 /*.slideAnimation{
     animation: slide 0.3s forwards;
 }

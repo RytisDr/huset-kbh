@@ -84,7 +84,8 @@ function buildMenu(data) {
     let parentElement = document.querySelector(".slideMenu ul")
     let burger = document.querySelector(".burgerMenu").addEventListener('click', function () {
         console.log("clicked")
-        let menu = document.querySelector(".slideMenu").classList.remove("dontDisplay");
+        let menu = document.querySelector(".slideMenu").classList.toggle("hidden")
+
     });
     data.forEach(item => {
         console.log(item);
