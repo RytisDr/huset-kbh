@@ -80,6 +80,7 @@ body {
     transform: rotate(45deg);
     right: -2px;
     top: 5px;
+    transition: all 0.5s;
 }
 #bar5{
     transform: rotate(-45deg);
@@ -89,20 +90,41 @@ body {
     width: 50vw;
     height: 400px;
     position: absolute;
-    z-index: 10;
+    z-index: 2;
     background-color: azure;
     transition: all 0.5s;
 }
 .slideMenu.hidden{
     transform: translateX(-50vw);
 }
+ul{
+    list-style-type: none;
+    padding-left: 20px;
+}
 .burgerMenu {
     cursor: pointer;
     top: 8px;
     left: 10px;
     position: absolute;
+    z-index: 3;
 }
-
+.burgerTransform{
+    animation: moveArrow 0.5s forwards;
+}
+.burgerTransformBack{
+    animation: moveArrow 0.5s reverse;
+}
+@keyframes moveArrow{
+    from{
+        left: 10px;
+    }
+    to{
+        left: 50px;
+    }
+}
+.dontDisplay{
+    display: none;
+}
 /*.slideAnimation{
     animation: slide 0.3s forwards;
 }
