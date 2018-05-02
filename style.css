@@ -1,130 +1,190 @@
 body {
     margin: auto;
+    background-color: #767B7E;
+    overflow: hidden;
 }
+
+/*INDEX/////////////////////////////////////////////////////////////////////*/
 
 #events {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(270px, auto));
 }
 
+#indexContentWrap {
+    overflow-y: auto;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow-y: auto;
+    position: absolute;
+}
+
 .singleEvent {
-    margin: 0px 0px 0px auto;
+    margin: 0px 0px auto auto;
     display: grid;
-    grid-template-rows: auto 70px;
+    grid-template-rows: auto 80px;
+    ;
+    cursor: pointer;
 }
 
 .imgPlace {
-    border: black solid 1pt;
     height: 155px;
-    width: 220px;
+    width: 240px;
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .textInfo {
-    display: inline;
     position: relative;
 }
 
 .title,
 .date,
-.genre, .cat {
+.genre,
+.cat {
     position: absolute;
-    margin: 0 0;
-    padding: 0;
-    width: 80%;
+    margin: 5px 0;
     font-size: 10pt;
     text-transform: capitalize;
-}
-
-.title {
-    top: 15px;
-    width: auto;
+    font-family: 'Special Elite', cursive;
+    font-weight: 500;
+    color: white;
 }
 
 .date {
     right: 0;
     top: 0;
-    width: auto;
-}
-.cat{
-    width: auto;
-    text-transform: capitalize;
-    margin-left: 70px;
-}
-.pagePlus {
-    background-color: aqua;
-    width: 50px;
-    height: 50px;
-    margin: 5px 0% 0 50%;
-    border-radius: 50%;
 }
 
-/*BURGER*/
+#shortInfo {
+    top: 20px;
+    position: absolute;
+    width: 100%;
+}
+
+.title {
+    position: static;
+}
+
+.genre {
+    position: static;
+    text-transform: capitalize;
+}
+
+/*PAGE PLUS TRIANGLE*/
+
+.pagePlus {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 50px solid white;
+    position: relative;
+    margin: 30px auto;
+    cursor: pointer;
+}
+#plus1,
+#plus2 {
+    position: absolute;
+    top: -32px;
+    left: -11.5px;
+    z-index: 20;
+    background-color: #767B7E;
+    width: 23px;
+    height: 1px;
+}
+#plus2{
+    transform: rotate(90deg)
+}
+
+/*BURGER MENU*/
 
 #bar1,
 #bar2,
-#bar3, #bar4, #bar5 {
+#bar3,
+#bar4,
+#bar5 {
     width: 32px;
-    height: 4px;
-    background-color: #333;
-    margin: 5px 0;
+    height: 3px;
+    background-color: black;
+    margin: 7px 0;
+    transition: all 0.5s;
 }
-#bar2{
+#bar1.invisible, #bar3.invisible{
+    opacity: 0;
+}
+
+#bar2 {
     width: 45px;
 }
-#bar4, #bar5{
+
+#bar4,
+#bar5 {
     width: 13px;
     position: absolute;
     transform: rotate(45deg);
-    right: -2px;
-    top: 5px;
+    right: -3px;
+    top: 6px;
     transition: all 0.5s;
 }
-#bar5{
+
+#bar5 {
     transform: rotate(-45deg);
-    top: 12.5px
+    top: 14px
 }
-.slideMenu{
+
+.slideMenu {
     width: 50vw;
     height: 400px;
     position: absolute;
     z-index: 2;
-    background-color: azure;
+    background-color: white;
     transition: all 0.5s;
+    border: solid #767B7E 1px;
 }
-.slideMenu.hidden{
+
+.slideMenu.hidden {
     transform: translateX(-50vw);
 }
-ul{
+
+ul {
     list-style-type: none;
     padding-left: 20px;
 }
+
 .burgerMenu {
     cursor: pointer;
     top: 8px;
-    left: 10px;
+    margin-left: 10px;
     position: absolute;
-    z-index: 3;
+    z-index: 5;
 }
-.burgerTransform{
-    animation: moveArrow 0.5s forwards;
+
+.burgerTransform {
+    animation: moveArrow 0.7s forwards;
 }
-.burgerTransformBack{
-    animation: moveArrow 0.5s reverse;
+
+.burgerTransformBack {
+    animation: moveArrow 0.7s reverse;
 }
-@keyframes moveArrow{
-    from{
+
+@keyframes moveArrow {
+    from {
         left: 10px;
     }
-    to{
-        left: 50px;
+    to {
+        left: 115px;
     }
 }
-.dontDisplay{
+
+.dontDisplay {
     display: none;
 }
+
 /*.slideAnimation{
     animation: slide 0.3s forwards;
 }

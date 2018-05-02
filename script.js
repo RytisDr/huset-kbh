@@ -57,10 +57,8 @@ if (window.location.pathname.includes("index.html")) {
     }
 
     function showEvents(data) {
-        data.forEach(showSingleEvent)
-
-        //PAGE+ BUTTON////////////////////
         if (page < musicPages || page2 < moviePages) {
+            //PAGE+ BUTTON////////////////////
             plusButton.classList.remove("dontDisplay");
             plusButton.addEventListener('click', function () {
                 if (page < musicPages) {
@@ -75,6 +73,7 @@ if (window.location.pathname.includes("index.html")) {
                 }
             })
         }
+        data.forEach(showSingleEvent)
 
     }
 
@@ -119,14 +118,11 @@ if (window.location.pathname.includes("index.html")) {
         let parentElement = document.querySelector(".slideMenu ul")
         let burger = document.querySelector(".burgerMenu")
         burger.addEventListener('click', function slideMenu() {
-            burger.classList.add("burgerTransform");
             let menu = document.querySelector(".slideMenu").classList.toggle("hidden");
-            burger.addEventListener('click', function () {
-                burger.classList.remove("burgerTransform");
-                burger.style.animation = "moveArrow 1s reverse forwards";
-                /*burger.classList.replace("burgerTransform", "burgerTransformBack");*/
+           /* burger.addEventListener('click', function () {
+                burger.classList.replace("burgerTransform", "burgerTransformBack");
                 //burger.style.animationDirection="reverse";
-            })
+            })*/
         });
         data.forEach(item => {
             if (item.count > 0 && item.parent === 41 || item.parent === 7) {
@@ -139,7 +135,7 @@ if (window.location.pathname.includes("index.html")) {
             }
         })
     }
-} else/*THE PAGE IS OTHER THAN INDEX, COULD ADD ELSE IF, BECAUSE THIS REFERS TO SUBPAGE.HTML*/ {
+} else /*THE PAGE IS OTHER THAN INDEX, COULD ADD ELSE IF, BECAUSE THIS REFERS TO SUBPAGE.HTML*/ {
     let subpage = document.querySelector("#subpage section")
     let subTemplate = document.querySelector("#subpage template").content
     let endpoints = ['music_events', 'movies'];
