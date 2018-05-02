@@ -1,43 +1,13 @@
 let urlParams = new URLSearchParams(window.location.search);
 let id = urlParams.get("id");
-if (window.location.pathname.includes("subpage.html")) {
-    let subpage = document.querySelector("#subpage section")
-    let subTemplate = document.querySelector("#subpage template").content
-    let endpoints = ['music_events', 'movies'];
-    endpoints.forEach(endp => {
-        let endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/" + endp + "/" + id
-        fetch(endpoint)
-            .then(e => e.json())
-            .then(showSinglePost)
-    })
-    /*console.log("i want to get article: " + id);
-    fetch("http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/music_events/"+id)
-    fetch("http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/movies/"+id)
-  .then(e=>e.json())
-  .then(showSinglePost)*/
-
-    function showSinglePost(aPost) {
-        let date = aPost.acf.date
-        let match = date.match(/(\d{4})(\d{2})(\d{2})/);
-        let formattedDate = match[1] + '.' + match[2] + '.' + match[3];
-        let clone = subTemplate.cloneNode(true);
-        console.log(aPost)
-        clone.querySelector("#poster").src = aPost.acf.image.sizes.medium_large
-        clone.querySelector("#title").textContent = aPost.title.rendered
-        clone.querySelector("#date").textContent = formattedDate
-        clone.querySelector("#genre").textContent = aPost.acf.genre
-        clone.querySelector("#description").innerHTML = aPost.content.rendered
-
-        subpage.appendChild(clone)
-    }
-
-
-} else {
+//IF CURRENT WINDOW IS INDEX RUN THIS ->
+if (window.location.pathname.includes("index.html")) {
     let template = document.querySelector("#eventTemp").content;
     let eventList = document.querySelector("#events");
     let plusButton = document.querySelector(".pagePlus");
-
     let catid = urlParams.get("category");
+
+    //MULTIPLE PAGE COUNTERS DUE TO MULTIPLE FETCH LINKS
     let page = 1;
     let page2 = 1;
     let musicPages = 0;
@@ -89,6 +59,7 @@ if (window.location.pathname.includes("subpage.html")) {
     function showEvents(data) {
         data.forEach(showSingleEvent)
 
+        //PAGE+ BUTTON////////////////////
         if (page < musicPages || page2 < moviePages) {
             plusButton.classList.remove("dontDisplay");
             plusButton.addEventListener('click', function () {
@@ -167,5 +138,35 @@ if (window.location.pathname.includes("subpage.html")) {
                 parentElement.appendChild(li);
             }
         })
+    }
+} else/*THE PAGE IS OTHER THAN INDEX, COULD ADD ELSE IF, BECAUSE THIS REFERS TO SUBPAGE.HTML*/ {
+    let subpage = document.querySelector("#subpage section")
+    let subTemplate = document.querySelector("#subpage template").content
+    let endpoints = ['music_events', 'movies'];
+    endpoints.forEach(endp => {
+        let endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/" + endp + "/" + id
+        fetch(endpoint)
+            .then(e => e.json())
+            .then(showSinglePost)
+    })
+    /*console.log("i want to get article: " + id);
+    fetch("http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/music_events/"+id)
+    fetch("http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/movies/"+id)
+  .then(e=>e.json())
+  .then(showSinglePost)*/
+
+    function showSinglePost(aPost) {
+        let date = aPost.acf.date
+        let match = date.match(/(\d{4})(\d{2})(\d{2})/);
+        let formattedDate = match[1] + '.' + match[2] + '.' + match[3];
+        let clone = subTemplate.cloneNode(true);
+        console.log(aPost)
+        clone.querySelector("#poster").src = aPost.acf.image.sizes.medium_large
+        clone.querySelector("#title").textContent = aPost.title.rendered
+        clone.querySelector("#date").textContent = formattedDate
+        clone.querySelector("#genre").textContent = aPost.acf.genre
+        clone.querySelector("#description").innerHTML = aPost.content.rendered
+
+        subpage.appendChild(clone)
     }
 }
