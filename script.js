@@ -55,18 +55,19 @@ if (window.location.pathname.includes("index.html")) {
             })
             .then(showEvents)
     }
-plusButton.addEventListener('click', function () {
-                if (page < musicPages) {
-                    page++;
-                    fetchMusicEvt();
-                    //fetchData();
-                } else if (page2 < moviePages) {
-                    page2++;
-                    fetchEvents();
-                } else {
-                    plusButton.classList.add("dontDisplay");
-                }
-            })
+    plusButton.addEventListener('click', function () {
+        if (page < musicPages) {
+            page++;
+            fetchMusicEvt();
+            //fetchData();
+        } else if (page2 < moviePages) {
+            page2++;
+            fetchEvents();
+        } else {
+            plusButton.classList.add("dontDisplay");
+        }
+    })
+
     function showEvents(data) {
         if (page < musicPages || page2 < moviePages) {
             //PAGE+ BUTTON////////////////////
@@ -127,23 +128,23 @@ plusButton.addEventListener('click', function () {
             document.querySelector("#bar2").classList.toggle("change");
 
 
-           /* burger.addEventListener('click', function () {
-                burger.classList.replace("burgerTransform", "burgerTransformBack");
-                //burger.style.animationDirection="reverse";
-            })*/
+            /* burger.addEventListener('click', function () {
+                 burger.classList.replace("burgerTransform", "burgerTransformBack");
+                 //burger.style.animationDirection="reverse";
+             })*/
         });
 
         data.forEach(item => {
 
-            if ( item.id===41 || item.id===7) {
+            if (item.id === 41 || item.id === 7) {
                 let header = document.createElement("h2");
-                header.textContent=item.name;
+                header.textContent = item.name;
                 parentElement.appendChild(header);
-                header.addEventListener('click', function(){
-                    window.location.href="index.html?category=" + item.id;
+                header.addEventListener('click', function () {
+                    window.location.href = "index.html?category=" + item.id;
                 })
                 let ul = document.createElement("ul");
-                ul.dataset.id=item.id
+                ul.dataset.id = item.id
                 parentElement.appendChild(ul);
             }
         })
@@ -152,12 +153,12 @@ plusButton.addEventListener('click', function () {
 
 
 
-                    let li = document.createElement("li");
-                    let a = document.createElement("a");
-                    a.textContent = item.name;
-                    a.href = "index.html?category=" + item.id;
-                    li.appendChild(a);
-                    parentElement.querySelector('[data-id="'+item.parent+'"]').appendChild(li);
+                let li = document.createElement("li");
+                let a = document.createElement("a");
+                a.textContent = item.name;
+                a.href = "index.html?category=" + item.id;
+                li.appendChild(a);
+                parentElement.querySelector('[data-id="' + item.parent + '"]').appendChild(li);
 
             }
         })
@@ -177,9 +178,10 @@ plusButton.addEventListener('click', function () {
     fetch("http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/movies/"+id)
   .then(e=>e.json())
   .then(showSinglePost)*/
-    document.querySelector("#backFromSubP").addEventListener('click', function(){
+    document.querySelector("#backFromSubP").addEventListener('click', function () {
         window.history.back()
     })
+
     function showSinglePost(aPost) {
         let date = aPost.acf.date
         let match = date.match(/(\d{4})(\d{2})(\d{2})/);
