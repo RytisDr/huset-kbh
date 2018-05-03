@@ -30,9 +30,9 @@ if (window.location.pathname.includes("index.html")) {
     }*/
 
     function fetchMusicEvt() {
-        let endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/music_events?_embed&order=asc&per_page=1&page=" + page
+        let endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/music_events?_embed&order=asc&per_page=2&page=" + page
         if (catid) {
-            endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/music_events?_embed&order=asc&per_page=1&page=" + page + "&categories=" + catid
+            endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/music_events?_embed&order=asc&per_page=2&page=" + page + "&categories=" + catid
         }
         fetch(endpoint)
             .then(e => {
@@ -43,10 +43,10 @@ if (window.location.pathname.includes("index.html")) {
     }
 
     function fetchEvents() {
-        let endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/movies?_embed&order=asc&per_page=1&page=" + page2
+        let endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/movies?_embed&order=asc&per_page=2&page=" + page2
 
         if (catid) {
-            endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/movies?_embed&order=asc&per_page=1&page=" + page2 + "&categories=" + catid
+            endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/movies?_embed&order=asc&per_page=2&page=" + page2 + "&categories=" + catid
         }
         fetch(endpoint)
             .then(e => {
@@ -55,12 +55,7 @@ if (window.location.pathname.includes("index.html")) {
             })
             .then(showEvents)
     }
-
-    function showEvents(data) {
-        if (page < musicPages || page2 < moviePages) {
-            //PAGE+ BUTTON////////////////////
-            plusButton.classList.remove("dontDisplay");
-            plusButton.addEventListener('click', function () {
+plusButton.addEventListener('click', function () {
                 if (page < musicPages) {
                     page++;
                     fetchMusicEvt();
@@ -72,6 +67,11 @@ if (window.location.pathname.includes("index.html")) {
                     plusButton.classList.add("dontDisplay");
                 }
             })
+    function showEvents(data) {
+        if (page < musicPages || page2 < moviePages) {
+            //PAGE+ BUTTON////////////////////
+            plusButton.classList.remove("dontDisplay");
+
         }
         data.forEach(showSingleEvent)
 
@@ -115,23 +115,50 @@ if (window.location.pathname.includes("index.html")) {
         .then(buildMenu)
 
     function buildMenu(data) {
-        let parentElement = document.querySelector(".slideMenu ul")
+        let parentElement = document.querySelector(".slideMenu")
         let burger = document.querySelector(".burgerMenu")
         burger.addEventListener('click', function slideMenu() {
             let menu = document.querySelector(".slideMenu").classList.toggle("hidden");
+            document.querySelector("#bar1").classList.toggle("invisible");
+            document.querySelector("#bar3").classList.toggle("invisible");
+            document.querySelector(".burgerMenu").classList.toggle("slide");
+            document.querySelector("#bar4").classList.toggle("change");
+            document.querySelector("#bar5").classList.toggle("change");
+            document.querySelector("#bar2").classList.toggle("change");
+
+
            /* burger.addEventListener('click', function () {
                 burger.classList.replace("burgerTransform", "burgerTransformBack");
                 //burger.style.animationDirection="reverse";
             })*/
         });
+
         data.forEach(item => {
-            if (item.count > 0 && item.parent === 41 || item.parent === 7) {
-                let li = document.createElement("li");
-                let a = document.createElement("a");
-                a.textContent = item.name;
-                a.href = "index.html?category=" + item.id;
-                li.appendChild(a);
-                parentElement.appendChild(li);
+
+            if ( item.id===41 || item.id===7) {
+                let header = document.createElement("h2");
+                header.textContent=item.name;
+                parentElement.appendChild(header);
+                header.addEventListener('click', function(){
+                    window.location.href="index.html?category=" + item.id;
+                })
+                let ul = document.createElement("ul");
+                ul.dataset.id=item.id
+                parentElement.appendChild(ul);
+            }
+        })
+        data.forEach(item => {
+            if (item.count > 0 && (item.parent === 41 || item.parent === 7)) {
+
+
+
+                    let li = document.createElement("li");
+                    let a = document.createElement("a");
+                    a.textContent = item.name;
+                    a.href = "index.html?category=" + item.id;
+                    li.appendChild(a);
+                    parentElement.querySelector('[data-id="'+item.parent+'"]').appendChild(li);
+
             }
         })
     }
@@ -150,7 +177,9 @@ if (window.location.pathname.includes("index.html")) {
     fetch("http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/movies/"+id)
   .then(e=>e.json())
   .then(showSinglePost)*/
-
+    document.querySelector("#backFromSubP").addEventListener('click', function(){
+        window.history.back()
+    })
     function showSinglePost(aPost) {
         let date = aPost.acf.date
         let match = date.match(/(\d{4})(\d{2})(\d{2})/);

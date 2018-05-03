@@ -87,6 +87,7 @@ body {
     margin: 30px auto;
     cursor: pointer;
 }
+
 #plus1,
 #plus2 {
     position: absolute;
@@ -97,7 +98,8 @@ body {
     width: 23px;
     height: 1px;
 }
-#plus2{
+
+#plus2 {
     transform: rotate(90deg)
 }
 
@@ -110,16 +112,22 @@ body {
 #bar5 {
     width: 32px;
     height: 3px;
-    background-color: black;
+    background-color: white;
     margin: 7px 0;
     transition: all 0.5s;
 }
-#bar1.invisible, #bar3.invisible{
+
+#bar1.invisible,
+#bar3.invisible {
     opacity: 0;
 }
 
 #bar2 {
     width: 45px;
+}
+
+#bar2.change {
+    background-color: #767B7E;
 }
 
 #bar4,
@@ -134,12 +142,26 @@ body {
 
 #bar5 {
     transform: rotate(-45deg);
-    top: 14px
+    top: 14px;
+}
+
+#bar4.change {
+    transform: rotate(-45deg);
+}
+
+#bar5.change {
+    transform: rotate(45deg);
+}
+
+#bar4.change,
+#bar5.change {
+    background-color: #767B7E;
+    right: 36px;
 }
 
 .slideMenu {
-    width: 50vw;
-    height: 400px;
+    width: 60vw;
+    height: auto;
     position: absolute;
     z-index: 2;
     background-color: white;
@@ -148,12 +170,30 @@ body {
 }
 
 .slideMenu.hidden {
-    transform: translateX(-50vw);
+    transform: translateX(-61vw);
+}
+
+.slideMenu a,
+.slideMenu h2 {
+    color: #767B7E;
+    font-family: 'Molengo';
+    margin: 20px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#AllEvt {
+    display: block;
+    margin: 20px;
 }
 
 ul {
+    margin-bottom: 30px;
+}
+
+ul li {
     list-style-type: none;
-    padding-left: 20px;
+    margin-bottom: 10px;
 }
 
 .burgerMenu {
@@ -162,9 +202,14 @@ ul {
     margin-left: 10px;
     position: absolute;
     z-index: 5;
+    transition: all 0.5s;
 }
 
-.burgerTransform {
+.burgerMenu.slide {
+    margin-left: 145px;
+}
+
+/*.burgerTransform {
     animation: moveArrow 0.7s forwards;
 }
 
@@ -179,10 +224,85 @@ ul {
     to {
         left: 115px;
     }
-}
+}*/
 
 .dontDisplay {
     display: none;
+}
+
+/*SUBPAGE///////////////*/
+
+#subpage {
+    overflow: auto;
+    /* overflow-x: hidden;*/
+}
+
+#poster {
+    width: 100vw;
+    max-width: 762px;
+}
+
+#heading {
+    display: grid;
+    grid-template-columns: 1fr 1fr
+}
+
+#title {
+    grid-column: 1/3;
+}
+
+#date,
+#title,
+#genre {
+    margin: 10px auto auto auto;
+    text-transform: capitalize;
+    font-family: 'Special Elite';
+    font-weight: 500;
+    color: white;
+}
+
+#genre,
+#title,
+#description {
+    margin-left: 30px;
+}
+
+#description {
+    font-family: 'Molengo';
+    color: white;
+    width: 83vw;
+    margin: 40px 0px 30px 30px;
+}
+
+#backFromSubP {
+    position: relative;
+    width: 60px;
+    left: 30px;
+    cursor: pointer;
+    font-family: 'Special Elite';
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    padding-bottom: 1px;
+}
+
+#backArrow1,
+#backArrow2 {
+    position: absolute;
+    background-color: white;
+    height: 0.5px;
+}
+
+#backArrow1 {
+    top: 17px;
+    width: 60px;
+}
+
+#backArrow2 {
+    transform: rotate(42deg);
+    width: 20px;
+    top: 24px;
+    left: -2px;
 }
 
 /*.slideAnimation{
