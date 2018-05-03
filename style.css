@@ -267,6 +267,10 @@ ul li {
     margin-left: 30px;
 }
 
+#description a{
+    color: #A1D8FE;
+}
+
 #description {
     font-family: 'Molengo';
     color: white;
