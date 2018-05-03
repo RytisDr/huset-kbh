@@ -93,7 +93,7 @@ body {
     position: absolute;
     top: -32px;
     left: -11.5px;
-    z-index: 20;
+    z-index: 2;
     background-color: #767B7E;
     width: 23px;
     height: 1px;
@@ -163,7 +163,7 @@ body {
     width: 60vw;
     height: auto;
     position: absolute;
-    z-index: 2;
+    z-index: 4;
     background-color: white;
     transition: all 0.5s;
     border: solid #767B7E 1px;
