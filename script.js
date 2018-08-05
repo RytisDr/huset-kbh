@@ -170,8 +170,15 @@ if (window.location.pathname.includes("index.html")) {
     endpoints.forEach(endp => {
         let endpoint = "http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/" + endp + "/" + id
         fetch(endpoint)
-            .then(e => e.json())
+            .then(e =>{
+            if(e.ok){
+             e.json()
             .then(showSinglePost)
+            }else{
+                return Promise.reject({status: e.status, statusText: e.statusText})
+            }
+        })
+
     })
     /*console.log("i want to get article: " + id);
     fetch("http://soperfect.dk/kea/07-cms/wp00/wp-json/wp/v2/music_events/"+id)
@@ -187,7 +194,6 @@ if (window.location.pathname.includes("index.html")) {
         let match = date.match(/(\d{4})(\d{2})(\d{2})/);
         let formattedDate = match[1] + '.' + match[2] + '.' + match[3];
         let clone = subTemplate.cloneNode(true);
-        console.log(aPost)
         clone.querySelector("#poster").src = aPost.acf.image.sizes.medium_large
         clone.querySelector("#title").textContent = aPost.title.rendered
         clone.querySelector("#date").textContent = formattedDate
